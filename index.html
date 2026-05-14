@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oghenefejiro Iboyi — Cybersecurity & QA Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0E0D;
+    --bg2: #0F1513;
+    --teal: #1DDE9E;
+    --teal2: #0FA870;
+    --white: #F0F5F3;
+    --gray: #8A9E98;
+    --border: rgba(29,222,158,0.15);
+    --card: rgba(255,255,255,0.03);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(29,222,158,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,222,158,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,14,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--teal);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-inner { max-width: 900px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--teal); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--gray);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 44px;
+  }
+  .badge {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    color: var(--gray);
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .badge.active {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: rgba(29,222,158,0.07);
+  }
+
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 13px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: var(--bg);
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 5%;
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    color: var(--white);
+  }
+
+  /* STATS ROW */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 80px;
+  }
+  .stat {
+    background: var(--bg);
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-lbl { font-size: 11px; color: var(--gray); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 2px; }
+  .exp-item {
+    border: 1px solid var(--border);
+    background: var(--card);
+    padding: 28px 32px;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .exp-item:hover {
+    border-color: rgba(29,222,158,0.4);
+    background: rgba(29,222,158,0.04);
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .exp-company { font-size: 13px; color: var(--teal); margin-top: 3px; }
+  .exp-date {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--gray);
+    padding: 4px 0 4px 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 11px;
+    top: 6px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 24px 26px;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: rgba(29,222,158,0.35); }
+  .skill-cat {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.05);
+    color: var(--gray);
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* CERTS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+  .cert-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: border-color 0.2s;
+  }
+  .cert-item:hover { border-color: rgba(29,222,158,0.35); }
+  .cert-icon {
+    width: 32px; height: 32px;
+    background: rgba(29,222,158,0.1);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .cert-name { font-size: 13px; color: var(--white); line-height: 1.4; }
+  .cert-issuer { font-size: 11px; color: var(--teal); margin-top: 3px; }
+
+  /* CONTACT */
+  .contact-box {
+    border: 1px solid var(--border);
+    padding: 48px;
+    background: var(--card);
+    text-align: center;
+  }
+  .contact-box h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .contact-box p { color: var(--gray); margin-bottom: 32px; font-size: 14px; }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+  .contact-link:hover { color: var(--teal); border-color: var(--teal); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px 5%;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.06em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    nav .nav-links { display: none; }
+    .contact-box { padding: 28px 20px; }
+    .exp-item { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">fejirobakers</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certs</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Available for hire · Lagos, Nigeria</div>
+    <h1>Oghenefejiro<br><span>Iboyi</span></h1>
+    <p class="hero-sub">Cybersecurity Officer & QA Engineer with 6+ years securing enterprise infrastructure and delivering bug-free software. CCNA · PMP · Cisco Certified.</p>
+    <div class="hero-badges">
+      <span class="badge active">Cybersecurity</span>
+      <span class="badge active">QA Engineering</span>
+      <span class="badge">API Testing</span>
+      <span class="badge">Network Security</span>
+      <span class="badge">SIEM</span>
+      <span class="badge">Playwright</span>
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:iboyioghenefejiro24@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="#experience" class="btn btn-secondary">View my work</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="stats fade-in">
+    <div class="stat"><div class="stat-num">6+</div><div class="stat-lbl">Years experience</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-lbl">Specialisations</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-lbl">Certifications</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Companies served</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// Work history</div>
+  <div class="section-title">Experience</div>
+  <div class="exp-list fade-in">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">QA Engineer</div>
+          <div class="exp-company">Alivation Technology Nigeria</div>
+        </div>
+        <div class="exp-date">Jun 2023 — Present</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Built automated test suites using Playwright and Selenium, reducing manual regression effort and accelerating release cycles</li>
+        <li>Designed 100+ API test cases in Postman and Swagger UI, catching critical defects before production</li>
+        <li>Managed full defect lifecycle in JIRA — improving cross-team bug resolution turnaround</li>
+        <li>Produced detailed test reports for stakeholder reviews, increasing visibility into product quality</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Cybersecurity Officer & QA Engineer</div>
+          <div class="exp-company">Fedren Global Services Nigeria</div>
+        </div>
+        <div class="exp-date">Apr 2020 — Present</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Conducted regular vulnerability assessments and applied security patches, reducing the organisation's attack surface</li>
+        <li>Monitored network traffic using SIEM tools, detecting and responding to incidents before escalation</li>
+        <li>Implemented and managed firewall rules and security protocols protecting sensitive data</li>
+        <li>Ensured team-wide compliance with industry security standards through training and policy enforcement</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Assistant IT Director</div>
+          <div class="exp-company">Radio Kano Nigeria</div>
+        </div>
+        <div class="exp-date">Mar 2019 — Mar 2020</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Managed full network infrastructure (routers, switches, firewalls, VPN) — ensuring 99%+ uptime for broadcast</li>
+        <li>Secured server environments and managed disaster recovery planning</li>
+        <li>Tracked IT project budgets in SAP and ServiceNow PPM across multiple projects</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// Technical arsenal</div>
+  <div class="section-title">Skills</div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-cat">QA & Testing</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Playwright</span>
+        <span class="skill-tag">Postman</span>
+        <span class="skill-tag">Selenium</span>
+        <span class="skill-tag">Swagger UI</span>
+        <span class="skill-tag">QA Touch</span>
+        <span class="skill-tag">BugBug</span>
+        <span class="skill-tag">Lighthouse CI</span>
+        <span class="skill-tag">JIRA</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Cybersecurity</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SIEM</span>
+        <span class="skill-tag">Endpoint Protection</span>
+        <span class="skill-tag">Vuln. Scanning</span>
+        <span class="skill-tag">Firewall Mgmt</span>
+        <span class="skill-tag">Network Monitoring</span>
+        <span class="skill-tag">VMware</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">Languages & DB</div>
+      <div class="skill-tags">
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">MS SQL Server</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">DevOps & Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">Azure Boards</span>
+        <span class="skill-tag">Confluence</span>
+        <span class="skill-tag">MS Project</span>
+        <span class="skill-tag">ServiceNow PPM</span>
+        <span class="skill-tag">SAP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">// Credentials</div>
+  <div class="section-title">Certifications</div>
+  <div class="certs-grid fade-in">
+    <div class="cert-item"><div class="cert-icon">🛡</div><div><div class="cert-name">Cisco Certified Cybersecurity</div><div class="cert-issuer">Cisco</div></div></div>
+    <div class="cert-item"><div class="cert-icon">🌐</div><div><div class="cert-name">CCNA 1 — Introduction to Networks</div><div class="cert-issuer">Cisco</div></div></div>
+    <div class="cert-item"><div class="cert-icon">🌐</div><div><div class="cert-name">CCNA 2 — Switching, Routing & Wireless</div><div class="cert-issuer">Cisco</div></div></div>
+    <div class="cert-item"><div class="cert-icon">📋</div><div><div class="cert-name">Project Management Professional (PMP)</div><div class="cert-issuer">PMI</div></div></div>
+    <div class="cert-item"><div class="cert-icon">🧪</div><div><div class="cert-name">Postman API Testing Fundamentals</div><div class="cert-issuer">Postman</div></div></div>
+    <div class="cert-item"><div class="cert-icon">⚡</div><div><div class="cert-name">JIRA / Confluence Agile Fundamentals</div><div class="cert-issuer">Atlassian</div></div></div>
+    <div class="cert-item"><div class="cert-icon">🗄</div><div><div class="cert-name">Basic SQL for Testers</div><div class="cert-issuer">Udemy</div></div></div>
+    <div class="cert-item"><div class="cert-icon">🌿</div><div><div class="cert-name">HSE Level 1, 2 & 3</div><div class="cert-issuer">Health, Safety & Environment</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box fade-in">
+    <h2>Let's work together</h2>
+    <p>Open to QA Engineering and Cybersecurity roles — remote or Lagos-based.</p>
+    <a href="mailto:iboyioghenefejiro24@gmail.com" class="btn btn-primary">iboyioghenefejiro24@gmail.com</a>
+    <div class="contact-links">
+      <a href="tel:+2348160879325" class="contact-link">📱 +234 816 087 9325</a>
+      <a href="https://github.com/fejirobakers" class="contact-link" target="_blank">GitHub: fejirobakers</a>
+      <a href="#" class="contact-link">📍 Lagos, Nigeria</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Oghenefejiro Iboyi · Built with GitHub Pages
+</footer>
+
+<script>
+  // Intersection observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
